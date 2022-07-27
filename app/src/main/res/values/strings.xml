@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Organidom</string>
+
+    <!-- Comunes -->
+    <string name="save">Guardar</string>
+
+    <!-- Mensajes -->
+    <string name="not_saved">No guardado</string>
+
+    <string name="productos">Productos</string>
+    <string name="add_producto">Añadir producto</string>
+    <string name="nombre">Nombre</string>
+    <string name="cantidad_num">Cantidad (Nº)</string>
+    <string name="cantidad_tipo">Tipo de cantidad</string>
+
+</resources>
