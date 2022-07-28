@@ -5,7 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_edit_producto.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
-        <entry key="app/src/main/res/layout/activity_productos.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/activity_productos.xml" value="0.22291666666666668" />
+        <entry key="app/src/main/res/layout/producto_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.2671875" />
       </map>
     </option>

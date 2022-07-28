@@ -59,4 +59,12 @@ public class Producto implements Serializable {
 	public void setComprar(boolean comprar) {
 		this.comprar = comprar;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto{" +
+				"id=" + id +
+				", nombre='" + nombre + '\'' +
+				'}';
+	}
 }

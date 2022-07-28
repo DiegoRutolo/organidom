@@ -10,8 +10,8 @@ import eu.rutolo.organidom.data.dto.Producto;
 
 public class ProductoListAdapter extends ListAdapter<Producto, ProductoViewHolder> {
 
-	public ProductoListAdapter(@NonNull DiffUtil.ItemCallback<Producto> diffCallback) {
-		super(diffCallback);
+	public ProductoListAdapter() {
+		super(new ProductoDiff());
 	}
 
 	@NonNull
@@ -29,12 +29,20 @@ public class ProductoListAdapter extends ListAdapter<Producto, ProductoViewHolde
 
 		@Override
 		public boolean areItemsTheSame(@NonNull Producto oldItem, @NonNull Producto newItem) {
-			return oldItem == newItem;
+			return oldItem.getId() == newItem.getId();
 		}
 
 		@Override
 		public boolean areContentsTheSame(@NonNull Producto oldItem, @NonNull Producto newItem) {
-			return oldItem.getId() == newItem.getId();
+			boolean cambio = !oldItem.getNombre().contentEquals(newItem.getNombre());
+
+			if (oldItem.getNumCantidad() != newItem.getNumCantidad())
+				cambio = true;
+
+			if (oldItem.isComprar() != newItem.isComprar())
+				cambio = true;
+
+			return !cambio;
 		}
 	}
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,18 +27,20 @@ public class ProductosActivity extends AppCompatActivity {
 
 	private ProductoViewModel productoViewModel;
 
-	ActivityResultLauncher<Intent> crearProducto = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-		@Override
-		public void onActivityResult(ActivityResult result) {
-			if (result.getResultCode() == RESULT_OK) {
-				assert result.getData() != null;
-				Producto p = (Producto) result.getData().getSerializableExtra(Keys.EXTRA_REPLY_PRODUCTO);
-				productoViewModel.insert(p);
-			} else {
-				Toast.makeText(getApplicationContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();
-			}
-		}
-	});
+	ActivityResultLauncher<Intent> crearProducto = registerForActivityResult(
+			new ActivityResultContracts.StartActivityForResult(),
+			new ActivityResultCallback<ActivityResult>() {
+				@Override
+				public void onActivityResult(ActivityResult result) {
+					if (result.getResultCode() == RESULT_OK) {
+						assert result.getData() != null;
+						Producto p = (Producto) result.getData().getSerializableExtra(Keys.EXTRA_REPLY_PRODUCTO);
+						productoViewModel.insert(p);
+					} else {
+						Toast.makeText(getApplicationContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class ProductosActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_productos);
 
 		RecyclerView rv = findViewById(R.id.rvProductos);
-		final ProductoListAdapter adapter = new ProductoListAdapter(new ProductoListAdapter.ProductoDiff());
+		final ProductoListAdapter adapter = new ProductoListAdapter();
 		rv.setAdapter(adapter);
 		rv.setLayoutManager(new LinearLayoutManager(this));
 
