@@ -6,7 +6,9 @@ public class Keys {
 	public static final int NEW_PRODUCTO_RC = 1;
 
 	// Mensajes de intent
-	public static final String EXTRA_REPLY_PRODUCTO = "eu.rutolo.organidom.REPLY_PRODUCTO";
+	public static final String EXTRA_PRODUCTO = "eu.rutolo.organidom.PRODUCTO";
+	public static final String EXTRA_PRODUCTO_CREATE = "eu.rutolo.organidom.PRODUCTO_CREATE";
+	public static final String EXTRA_PRODUCTO_ID = "eu.rutolo.organidom.PRODUCTO_ID";
 
 	// Mensajes de log
 	public static final String LOG = "Organidom";

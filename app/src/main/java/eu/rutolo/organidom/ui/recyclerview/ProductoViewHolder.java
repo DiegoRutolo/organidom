@@ -13,15 +13,19 @@ import eu.rutolo.organidom.data.dto.Producto;
 
 public class ProductoViewHolder extends RecyclerView.ViewHolder {
 
-	private TextView tvNombre;
+	private final TextView tvId;
+	private final TextView tvNombre;
 
 	public ProductoViewHolder(@NonNull View itemView) {
 		super(itemView);
+		tvId = itemView.findViewById(R.id.tvIdProducto);
 		tvNombre = itemView.findViewById(R.id.tvNombreProducto);
 	}
 
-	public void bind(Producto p) {
+	public void bind(Producto p, View.OnClickListener listener) {
+		tvId.setText(Long.toString(p.getId()));
 		tvNombre.setText(p.getNombre());
+		itemView.setOnClickListener(listener);
 	}
 
 	static ProductoViewHolder create(ViewGroup parent) {
@@ -29,4 +33,5 @@ public class ProductoViewHolder extends RecyclerView.ViewHolder {
 				.inflate(R.layout.producto_item, parent, false);
 		return new ProductoViewHolder(v);
 	}
+
 }

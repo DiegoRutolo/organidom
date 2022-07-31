@@ -1,5 +1,6 @@
 package eu.rutolo.organidom.ui.recyclerview;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,8 +11,11 @@ import eu.rutolo.organidom.data.dto.Producto;
 
 public class ProductoListAdapter extends ListAdapter<Producto, ProductoViewHolder> {
 
-	public ProductoListAdapter() {
+	private final View.OnClickListener listener;
+
+	public ProductoListAdapter(View.OnClickListener listener) {
 		super(new ProductoDiff());
+		this.listener = listener;
 	}
 
 	@NonNull
@@ -22,7 +26,7 @@ public class ProductoListAdapter extends ListAdapter<Producto, ProductoViewHolde
 
 	@Override
 	public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
-		holder.bind(getItem(position));
+		holder.bind(getItem(position), listener);
 	}
 
 	public static class ProductoDiff extends DiffUtil.ItemCallback<Producto> {

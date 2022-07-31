@@ -3,6 +3,9 @@
 
     <!-- Comunes -->
     <string name="save">Guardar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
 
     <!-- Mensajes -->
     <string name="not_saved">No guardado</string>
@@ -12,5 +15,6 @@
     <string name="nombre">Nombre</string>
     <string name="cantidad_num">Cantidad (Nº)</string>
     <string name="cantidad_tipo">Tipo de cantidad</string>
+    <string name="comprar">Comprar</string>
 
 </resources>

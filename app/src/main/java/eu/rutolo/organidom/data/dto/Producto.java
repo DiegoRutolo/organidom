@@ -1,5 +1,6 @@
 package eu.rutolo.organidom.data.dto;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,8 +17,7 @@ public class Producto implements Serializable {
 	private String tipoCantidad;
 	private boolean comprar;
 
-	public Producto(String nombre) {
-		this.nombre = nombre;
+	public Producto() {
 	}
 
 	public long getId() {
@@ -60,6 +60,7 @@ public class Producto implements Serializable {
 		this.comprar = comprar;
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "Producto{" +

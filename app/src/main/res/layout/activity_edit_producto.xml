@@ -36,10 +36,44 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSaveProducto"
+    <CheckBox
+        android:id="@+id/iComprar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save" />
+        android:text="@string/comprar"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:background="@color/btn_secundario"/>
+
+        <ImageButton
+            android:id="@+id/btnDeleteProducto"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:background="@color/btn_rojo"/>
+
+        <ImageButton
+            android:id="@+id/btnSaveProducto"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:src="@drawable/ic_baseline_save_24"
+            android:background="@color/btn_primario" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -29,7 +29,7 @@ public interface ProductoDao {
 	@Query("SELECT * " +
 			"FROM Producto p " +
 			"WHERE p.id = :id ")
-	LiveData<Producto> findById(long id);
+	Producto findById(long id);
 
 	@Query("SELECT * " +
 			"FROM Producto p " +

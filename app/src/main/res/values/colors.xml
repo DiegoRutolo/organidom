@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="gray_3">#333333</color>
+    <color name="gray_6">#666666</color>
+    <color name="gray_A">#AAAAAA</color>
+
+    <color name="btn_rojo">#A52E2E</color>
+    <color name="btn_rojo_disabled">#A55757</color>
+    <color name="btn_primario">@color/purple_200</color>
+    <color name="btn_secundario">@color/gray_A</color>
 </resources>

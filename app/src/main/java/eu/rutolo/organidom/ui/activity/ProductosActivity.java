@@ -1,46 +1,29 @@
 package eu.rutolo.organidom.ui.activity;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Objects;
 
 import eu.rutolo.organidom.Keys;
 import eu.rutolo.organidom.R;
 import eu.rutolo.organidom.data.dto.Producto;
 import eu.rutolo.organidom.ui.recyclerview.ProductoListAdapter;
-import eu.rutolo.organidom.ui.viewmodel.ProductoViewModel;
+import eu.rutolo.organidom.ui.viewmodel.ProductosListViewModel;
 
-public class ProductosActivity extends AppCompatActivity {
+public class ProductosActivity extends AppCompatActivity implements View.OnClickListener {
 
-	private ProductoViewModel productoViewModel;
-
-	ActivityResultLauncher<Intent> crearProducto = registerForActivityResult(
-			new ActivityResultContracts.StartActivityForResult(),
-			new ActivityResultCallback<ActivityResult>() {
-				@Override
-				public void onActivityResult(ActivityResult result) {
-					if (result.getResultCode() == RESULT_OK) {
-						assert result.getData() != null;
-						Producto p = (Producto) result.getData().getSerializableExtra(Keys.EXTRA_REPLY_PRODUCTO);
-						productoViewModel.insert(p);
-					} else {
-						Toast.makeText(getApplicationContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();
-					}
-				}
-			});
+	private ProductosListViewModel productosListViewModel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +31,32 @@ public class ProductosActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_productos);
 
 		RecyclerView rv = findViewById(R.id.rvProductos);
-		final ProductoListAdapter adapter = new ProductoListAdapter();
+		final ProductoListAdapter adapter = new ProductoListAdapter(this);
 		rv.setAdapter(adapter);
 		rv.setLayoutManager(new LinearLayoutManager(this));
+		registerForContextMenu(rv);
 
-		productoViewModel = new ViewModelProvider(this).get(ProductoViewModel.class);
-		productoViewModel.getAllProductos().observe(this, adapter::submitList);
+		productosListViewModel = new ViewModelProvider(this).get(ProductosListViewModel.class);
+		productosListViewModel.getAllProductos().observe(this, adapter::submitList);
 
 		FloatingActionButton fab = findViewById(R.id.btnAddProducto);
 		fab.setOnClickListener(view -> {
 			Intent i = new Intent(ProductosActivity.this, EditProductoActivity.class);
-			crearProducto.launch(i);
+			i.putExtra(Keys.EXTRA_PRODUCTO_CREATE, true);
+			startActivity(i);
 		});
+	}
+
+	@Override
+	public void onClick(View view) {
+		TextView tvId = view.findViewById(R.id.tvIdProducto);
+		Intent i = new Intent(ProductosActivity.this, EditProductoActivity.class);
+		i.putExtra(Keys.EXTRA_PRODUCTO_CREATE, false);
+		long idProd = Long.parseLong((String) tvId.getText());
+		Producto prod = Objects.requireNonNull(productosListViewModel.getAllProductos().getValue()).parallelStream()
+				.filter(p -> p.getId() == idProd)
+				.findFirst().get();
+		i.putExtra(Keys.EXTRA_PRODUCTO, prod);
+		startActivity(i);
 	}
 }
