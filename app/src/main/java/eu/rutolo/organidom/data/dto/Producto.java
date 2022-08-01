@@ -11,14 +11,10 @@ public class Producto implements Serializable {
 
 	@PrimaryKey(autoGenerate = true)
 	private long id;
-
 	private String nombre;
 	private int numCantidad;
 	private String tipoCantidad;
 	private boolean comprar;
-
-	public Producto() {
-	}
 
 	public long getId() {
 		return id;
